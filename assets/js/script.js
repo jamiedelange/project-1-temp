@@ -54,9 +54,8 @@ container.addEventListener("mouseleave", (e) => {
 // -----------------------------------------------------------------------------------------
 var currentTime = (moment().format('MM/DD/YYYY'));
 var apiKey = "78abac7397dbff0934df4ef82fc5fd58";
-var query = $("#search-term");
+var query = document.getElementById("search-term");
 var maps = $(".map");
-var mapRef = "./assets/images/" + query + ".png";
 
 console.log(currentTime);
 
@@ -102,6 +101,7 @@ function updateLocation(response) {
     $(".city").html(`<h2>${response.name} (${currentTime}) <img src="https://openweathermap.org/img/w/${response.weather[0].icon}.png"></h2>`);
     $(".humidity").text("Humidity: " + Math.round(response.main.humidity) + "%");
     $(".temperature").text("Temperature: " + Math.round(response.main.temp) + "°F");
+    $(".title").html(response.name);
 }
 function errorFunction() {
     alert("Geocoder failed");
@@ -119,7 +119,7 @@ function citySearch() {
             }).then(function (response) {
                 updateLocation(response);
                 uvIndex(response.coord.lon, response.coord.lat)
-                console.log(reponse);
+                console.log(query.value);
             });
         }
     })
@@ -143,6 +143,65 @@ const buttonClick = (city) => {
     });
 };
 
-function getMap() {
-    var i = document.getElementByClassName(".map").src;
+
+var images = {
+    alabama: "./assets/images/alabama.png",
+    alaska: "./assets/images/alaska.png",
+    arizona: "./assets/images/arizona.png",
+    arkansas: "./assets/images/arkansas.png",
+    california: "./assets/images/california.png",
+    colorado: "./assets/images/colorado.png",
+    connecticut: "./assets/images/connecticut.png",
+    delaware: "./assets/images/delaware.png",
+    florida: "./assets/images/florida.png",
+    georgia: "./assets/images/georgia.png",
+    hawaii: "./assets/images/hawaii.png",
+    idaho: "./assets/images/idaho.png",
+    illinois: "./assets/images/illinois.png",
+    indiana: "./assets/images/indiana.png",
+    iowa: "./assets/images/iowa.png",
+    kansas: "./assets/images/kansas.png",
+    kentucky: "./assets/images/kentucky.png",
+    louisiana: "./assets/images/louisiana.png",
+    maine: "./assets/images/maine.png",
+    maryland: "./assets/images/maryland.png",
+    massachusetts: "./assets/images/massachusetts.png",
+    michigan: "./assets/images/michigan.png",
+    minnesota: "./assets/images/minnesota.png",
+    mississippi: "./assets/images/mississippi.png",
+    missouri: "./assets/images/missouri.png",
+    montana: "./assets/images/montana.png",
+    nebraska: "./assets/images/nebraska.png",
+    nevada: "./assets/images/nevada.png",
+    newhampshire: "./assets/images/newhampshire.png",
+    newjersey: "./assets/images/newjersey.png",
+    newmexico: "./assets/images/newmexico.png",
+    newyork: "./assets/images/newyork.png",
+    northcarolina: "./assets/images/northcarolina.png",
+    northdakota: "./assets/images/northdakota.png",
+    ohio: "./assets/images/ohio.png",
+    oklahoma: "./assets/images/oklahoma.png",
+    oregon: "./assets/images/oregon.png",
+    pennsylvania: "./assets/images/pennsylvania.png",
+    rhodeisland: "./assets/images/rhodeisland.png",
+    southcarolina: "./assets/images/southcarolina.png",
+    southdakota: "./assets/images/southdakota.png",
+    tennessee: "./assets/images/tennessee.png",
+    texas: "./assets/images/texas.png",
+    utah: "./assets/images/utah.png",
+    vermont: "./assets/images/vermont.png",
+    virginia: "./assets/images/virginia.png",
+    washington: "./assets/images/washington.png",
+    westvirginia: "./assets/images/westvirginia.png",
+    wisconsin: "./assets/images/wisconsin.png",
+    wyoming: "./assets/images/wyoming.png"
+};
+
+
+var input = document.getElementById("search-term");
+
+if (!images[input]) {
+    window.alert("Invalid input")
+} else {
+    query.src = images[input]
 }
