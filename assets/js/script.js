@@ -102,6 +102,11 @@ function updateLocation(response) {
     $(".humidity").text("Humidity: " + Math.round(response.main.humidity) + "%");
     $(".temperature").text("Temperature: " + Math.round(response.main.temp) + "°F");
     $(".title").html(response.name);
+    if (!images[input]) {
+        window.alert("Invalid input")
+    } else {
+        query.src = images[input]
+    }
 }
 function errorFunction() {
     alert("Geocoder failed");
@@ -196,12 +201,3 @@ var images = {
     wisconsin: "./assets/images/wisconsin.png",
     wyoming: "./assets/images/wyoming.png"
 };
-
-
-var input = document.getElementById("search-term");
-
-if (!images[input]) {
-    window.alert("Invalid input")
-} else {
-    query.src = images[input]
-}
